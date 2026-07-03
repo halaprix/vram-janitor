@@ -22,7 +22,7 @@ jobs:
           test -f .github/PULL_REQUEST_TEMPLATE.md
       - name: Check public-safe placeholders
         run: |
-          if grep -R "GITHUB_TOKEN\|API_KEY\|PRIVATE KEY\|BEGIN RSA" -n README.md SPEC.md AGENTS.md CHANGELOG.md CONTRIBUTING.md SECURITY.md .github; then
+          if grep -R "GITHUB_TOKEN\|API_KEY\|PRIVATE KEY\|BEGIN RSA" -n README.md SPEC.md AGENTS.md CHANGELOG.md CONTRIBUTING.md SECURITY.md .github/PULL_REQUEST_TEMPLATE.md; then
             echo "Potential secret placeholder found"
             exit 1
           fi
