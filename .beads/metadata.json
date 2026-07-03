@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "vram",
+  "project_id": "13e90894-f28c-477d-8cde-ccd9b0c8204c"
+}

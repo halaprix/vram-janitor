@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check required scaffold files
+        run: |
+          test -f README.md
+          test -f SPEC.md
+          test -f AGENTS.md
+          test -f CHANGELOG.md
+          test -f LICENSE
+          test -f CONTRIBUTING.md
+          test -f SECURITY.md
+          test -f .github/PULL_REQUEST_TEMPLATE.md
+      - name: Check public-safe placeholders
+        run: |
+          if grep -R "GITHUB_TOKEN\|API_KEY\|PRIVATE KEY\|BEGIN RSA" -n README.md SPEC.md AGENTS.md CHANGELOG.md CONTRIBUTING.md SECURITY.md .github; then
+            echo "Potential secret placeholder found"
+            exit 1
+          fi
